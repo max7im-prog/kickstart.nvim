@@ -26,56 +26,55 @@ return {
     'leoluz/nvim-dap-go',
   },
   keys = {
-    -- Basic debugging keymaps, feel free to change to your liking!
     {
-      '<F5>',
+      '<leader>ds',
       function()
         require('dap').continue()
       end,
-      desc = 'Debug: Start/Continue',
+      desc = '[D]ebug: [S]tart/Continue',
     },
     {
-      '<F1>',
+      '<leader>di',
       function()
         require('dap').step_into()
       end,
-      desc = 'Debug: Step Into',
+      desc = '[D]ebug: Step [I]nto',
     },
     {
-      '<F2>',
+      '<leader>dv',
       function()
         require('dap').step_over()
       end,
-      desc = 'Debug: Step Over',
+      desc = '[D]ebug: Step O[V]er',
     },
     {
-      '<F3>',
+      '<leader>du',
       function()
         require('dap').step_out()
       end,
-      desc = 'Debug: Step Out',
+      desc = '[D]ebug: Step O[U]t',
     },
     {
-      '<leader>b',
+      '<leader>db',
       function()
         require('dap').toggle_breakpoint()
       end,
-      desc = 'Debug: Toggle Breakpoint',
+      desc = '[D]ebug: Toggle [B]reakpoint',
     },
     {
-      '<leader>B',
+      '<leader>dB',
       function()
         require('dap').set_breakpoint(vim.fn.input 'Breakpoint condition: ')
       end,
-      desc = 'Debug: Set Breakpoint',
+      desc = '[D]ebug: Set [B]reakpoint (Conditional)',
     },
     -- Toggle to see last session result. Without this, you can't see session output in case of unhandled exception.
     {
-      '<F7>',
+      '<leader>dls',
       function()
         require('dapui').toggle()
       end,
-      desc = 'Debug: See last session result.',
+      desc = '[D]ebug: See [L]ast [S]ession result.',
     },
   },
   config = function()
