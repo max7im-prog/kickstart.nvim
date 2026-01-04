@@ -741,7 +741,8 @@ require('lazy').setup({
     end,
   },
 
-  { -- Autoformat with Conform
+  {
+    -- Autoformat with Conform
     'stevearc/conform.nvim',
     event = { 'BufWritePre' },
     cmd = { 'ConformInfo' },
@@ -756,25 +757,28 @@ require('lazy').setup({
     },
     opts = {
       notify_on_error = true,
-      format_on_save = function(bufnr)
-        local ft = vim.bo[bufnr].filetype
 
-        -- Disable LSP formatting for certain languages if desired
-        local disable_lsp_ft = { c = true, cpp = true }
+      -- Format on save using:
+      -- 1. external formatter if available
+      -- 2. otherwise LSP formatter
+      format_on_save = {
+        timeout_ms = 500,
+        lsp_format = 'fallback',
+      },
 
-        if disable_lsp_ft[ft] then
-          return nil
-        end
-
-        return {
-          timeout_ms = 500,
-          -- Only use LSP for filetypes other than CMake
-          lsp_format = ft ~= 'cmake' and 'fallback' or false,
-        }
-      end,
       formatters_by_ft = {
         lua = { 'stylua' },
-        cmake = { 'usr/bin/cmake-format' },
+        cmake = { 'cmake_format' },
+        c = { 'clang-format' },
+        cpp = { 'clang-format' },
+      },
+
+      formatters = {
+        cmake_format = {
+          command = 'cmake-format',
+          args = { '-' },
+          stdin = true,
+        },
       },
     },
   },
