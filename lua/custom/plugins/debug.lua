@@ -27,11 +27,31 @@ return {
   },
   keys = {
     {
+      '<leader>d',
+      group = '[D]ebug',
+      nowait = true,
+      remap = false,
+    },
+    {
       '<leader>ds',
       function()
         require('dap').continue()
       end,
       desc = '[D]ebug: [S]tart/Continue',
+    },
+    {
+      '<leader>dk',
+      function()
+        require('dap').up()
+      end,
+      desc = '[D]ebug: up a frame',
+    },
+    {
+      '<leader>dj',
+      function()
+        require('dap').down()
+      end,
+      desc = '[D]ebug: down a frame',
     },
     {
       '<leader>di',
@@ -75,6 +95,17 @@ return {
         require('dapui').toggle()
       end,
       desc = '[D]ebug: See [L]ast [S]ession result.',
+    },
+
+    {
+      '<leader>dq',
+      function()
+        require('dap').terminate()
+        require('dapui').close()
+      end,
+      desc = '[D]ebug: [Q]uit',
+      nowait = true,
+      remap = false,
     },
   },
   config = function()
@@ -156,13 +187,36 @@ return {
         name = 'Launch (gdb)',
         type = 'cppdbg',
         request = 'launch',
+
         program = function()
           return vim.fn.input('Path to executable: ', vim.fn.getcwd() .. '/', 'file')
         end,
+
         cwd = '${workspaceFolder}',
         stopAtEntry = false,
+
         MIMode = 'gdb',
         miDebuggerPath = '/usr/bin/gdb',
+
+        setupCommands = {
+          {
+            description = 'Enable pretty-printing',
+            text = '-enable-pretty-printing',
+            ignoreFailures = true,
+          },
+          {
+            description = 'Stop on SIGSEGV',
+            text = 'handle SIGSEGV stop print pass',
+          },
+          {
+            description = 'Stop on SIGABRT',
+            text = 'handle SIGABRT stop print pass',
+          },
+          {
+            description = 'Stop on SIGILL',
+            text = 'handle SIGILL stop print pass',
+          },
+        },
       },
     }
 
