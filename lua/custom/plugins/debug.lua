@@ -40,6 +40,13 @@ return {
       desc = '[D]ebug: [S]tart/Continue',
     },
     {
+      '<leader>dc',
+      function()
+        require('dap').run_to_cursor()
+      end,
+      desc = '[D]ebug: run to [C]ursor',
+    },
+    {
       '<leader>dk',
       function()
         require('dap').up()
@@ -96,7 +103,6 @@ return {
       end,
       desc = '[D]ebug: See [L]ast [S]ession result.',
     },
-
     {
       '<leader>dq',
       function()
