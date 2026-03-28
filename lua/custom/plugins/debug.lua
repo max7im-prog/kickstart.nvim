@@ -95,6 +95,13 @@ return {
       end,
       desc = '[D]ebug: Set [B]reakpoint (Conditional)',
     },
+    {
+      '<leader>dlr',
+      function()
+        require('dap').run_last()
+      end,
+      desc = '[D]ebug: See [L]ast session [R]erun.',
+    },
     -- Toggle to see last session result. Without this, you can't see session output in case of unhandled exception.
     {
       '<leader>dls',

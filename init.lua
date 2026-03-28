@@ -144,6 +144,9 @@ vim.o.splitbelow = true
 vim.o.list = true
 vim.opt.listchars = { tab = '» ', trail = '·', nbsp = '␣' }
 
+-- Set yank to copy into clipboard by default
+vim.opt.clipboard = 'unnamedplus'
+
 -- Preview substitutions live, as you type!
 vim.o.inccommand = 'split'
 
