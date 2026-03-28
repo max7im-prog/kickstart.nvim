@@ -125,6 +125,13 @@ return {
     local dap = require 'dap'
     local dapui = require 'dapui'
 
+    -- Support for vscode launch.json
+    local function find_root()
+      return vim.fn.systemlist('git rev-parse --show-toplevel')[1]
+    end
+    local root = find_root()
+    require('dap.ext.vscode').load_launchjs(root .. '/.vscode/launch.json')
+
     require('mason-nvim-dap').setup {
       -- Makes a best effort to setup the various debuggers with
       -- reasonable debug configurations
