@@ -168,6 +168,11 @@ vim.o.confirm = true
 --  See `:help hlsearch`
 vim.keymap.set('n', '<Esc>', '<cmd>nohlsearch<CR>')
 
+-- Add support for russian layout throgh pressing <Ctrl-^>
+vim.opt.keymap = 'russian-jcukenwin'
+vim.opt.iminsert = 0
+vim.opt.imsearch = 0
+
 -- Diagnostic keymaps
 vim.keymap.set('n', '<leader>q', vim.diagnostic.setloclist, { desc = 'Open diagnostic [Q]uickfix list' })
 
